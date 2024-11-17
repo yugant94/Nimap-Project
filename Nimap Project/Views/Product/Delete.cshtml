@@ -1,0 +1,20 @@
+﻿@model Nimap_Project.Models.Product
+
+<h2>Delete Product</h2>
+<p>Are you sure you want to delete this product?</p>
+
+<div>
+    <p>
+        <strong>ProductId:</strong> @Model.ProductId <br />
+        <strong>ProductName:</strong> @Model.ProductName <br />
+        <strong>Category:</strong> @(Model.Category != null ? Model.Category.CategoryName : "No Category Assigned")
+    </p>
+</div>
+
+@using (Html.BeginForm("Delete", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ProductId)
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Cancel</a>
+}
